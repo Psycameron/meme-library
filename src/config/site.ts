@@ -5,22 +5,22 @@ export const siteConfig = {
   description: "Best memes in the world.",
   navItems: [
     {
-      label: "List",
-      href: "/list",
-    },
-    {
       label: "Table",
       href: "/table",
+    },
+    {
+      label: "List",
+      href: "/list",
     },
   ],
   navMenuItems: [
     {
-      label: "List",
-      href: "/list",
-    },
-    {
       label: "Table",
       href: "/table",
+    },
+    {
+      label: "List",
+      href: "/list",
     },
   ],
 };
