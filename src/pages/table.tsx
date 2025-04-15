@@ -1,12 +1,17 @@
 import DefaultLayout from "@/layouts/default";
 
+import { useMemes } from "@/hooks/useMemes";
+import MemeTable from "@/components/memeTable";
+
 export default function TablePage() {
+  const { memes, loading, error } = useMemes();
+
+  if (error) return <p>Oops, something went wrong try again later</p>;
+
   return (
     <DefaultLayout>
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-        <div className="inline-block max-w-lg text-center justify-center">
-          <h1 className="text-6xl">Table page</h1>
-        </div>
+        {loading ? <div>Loading...</div> : <MemeTable memes={memes} />}
       </section>
     </DefaultLayout>
   );
