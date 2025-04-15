@@ -1,4 +1,4 @@
-import { MemeType } from "@/types/apiTypes";
+import { FC } from "react";
 import {
   Table,
   TableHeader,
@@ -8,12 +8,13 @@ import {
   TableCell,
   getKeyValue,
 } from "@heroui/table";
-import { FC } from "react";
+import EditModal from "./editModal";
+import { MemeType } from "@/types/apiTypes";
 
 const COLUMNS = [
   { key: "id", label: "ID" },
   { key: "title", label: "Title" },
-  { key: "image", label: "Image" },
+  { key: "imageUrl", label: "Image" },
   { key: "likes", label: "Likes" },
   { key: "edit", label: "Edit" },
 ];
@@ -24,7 +25,7 @@ interface IMemeTableProps {
 
 const MemeTable: FC<IMemeTableProps> = ({ memes }) => {
   return (
-    <Table>
+    <Table aria-label="Table with memes">
       <TableHeader columns={COLUMNS}>
         {column => <TableColumn key={column.key}>{column.label}</TableColumn>}
       </TableHeader>
@@ -34,15 +35,16 @@ const MemeTable: FC<IMemeTableProps> = ({ memes }) => {
           <TableRow key={item.id}>
             {columnKey => (
               <TableCell>
-                {columnKey === "image" ? (
+                {columnKey === "imageUrl" ? (
                   <img
                     src={getKeyValue(item, columnKey)}
                     alt={item.title}
-                    className="w-24 h-auto rounded"
+                    className="w-40 h-auto rounded"
                   />
                 ) : (
                   getKeyValue(item, columnKey)
                 )}
+                {columnKey === "edit" && <EditModal id={item.id} />}
               </TableCell>
             )}
           </TableRow>
