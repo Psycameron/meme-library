@@ -1,50 +1,41 @@
-# Vite & HeroUI Template
+# Test task for LEIME
 
-This is a template for creating applications using Vite and HeroUI (v2).
+## Installation
 
-[Try it on CodeSandbox](https://githubbox.com/frontio-ai/vite-template)
+To set up and run the project locally, follow these steps:
 
-## Technologies Used
+1.  **Clone the repository:**
 
-- [Vite](https://vitejs.dev/guide/)
-- [HeroUI](https://heroui.com)
-- [Tailwind CSS](https://tailwindcss.com)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org)
-- [Framer Motion](https://www.framer.com/motion)
+    ```bash
+    git clone https://github.com/Psycameron/meme-library.git
+    ```
 
-## How to Use
+2.  **Install dependencies:**
 
-To clone the project, run the following command:
+    ```bash
+    npm install
+    ```
 
-```bash
-git clone https://github.com/frontio-ai/vite-template.git
-```
+3.  **Create a .env file based on .env.example: Copy the .env.example file and rename it to .env. Then, open this file and specify the required environment variables:**
 
-### Install dependencies
+    ```bash
+    cp .env.example .env
+    ```
 
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
+4.  **Start the project in development mode:**
 
-```bash
-npm install
-```
+    ```bash
+    npm run dev
+    ```
 
-### Run the development server
+5.  **Open the application in your browser: Go to http://localhost:5173 to view the running project**
 
-```bash
-npm run dev
-```
+## Requirements
 
-### Setup pnpm (optional)
+This project requires Node.js version **18.18.1 or higher**. Please ensure that your environment meets this requirement to avoid compatibility issues.
 
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
+To check your Node.js version, run:
 
 ```bash
-public-hoist-pattern[]=*@heroui/*
+ node -v
 ```
-
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
-
-## License
-
-Licensed under the [MIT license](https://github.com/frontio-ai/vite-template/blob/main/LICENSE).
