@@ -1,3 +1,4 @@
+import { FC } from "react";
 import {
   Modal,
   ModalContent,
@@ -8,7 +9,12 @@ import {
 import { Button } from "@heroui/button";
 import EditForm from "./editForm";
 
-const EditModal = ({ id }: { id: string }) => {
+interface IEditModalProps {
+  id: string;
+  updateMemes: () => Promise<void>;
+}
+
+const EditModal: FC<IEditModalProps> = ({ id, updateMemes }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
@@ -25,7 +31,7 @@ const EditModal = ({ id }: { id: string }) => {
                 Meme properties
               </ModalHeader>
               <ModalBody>
-                <EditForm id={id} onClose={onClose} />
+                <EditForm id={id} onClose={onClose} updateMemes={updateMemes} />
               </ModalBody>
             </>
           )}

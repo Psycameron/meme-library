@@ -1,3 +1,4 @@
+import { useMemes } from "@/hooks/useMemes";
 import { getMemesById, updateMeme } from "@/service/memesApi";
 import { MemeType } from "@/types/apiTypes";
 import { Button } from "@heroui/button";
@@ -13,16 +14,16 @@ const LIKES_OPTIONS = Array.from({ length: 100 }, (_, i) => ({
 interface IEditFormProps {
   id: string;
   onClose: () => void;
+  updateMemes: () => Promise<void>;
 }
 
-const EditForm: FC<IEditFormProps> = ({ id, onClose }) => {
+const EditForm: FC<IEditFormProps> = ({ id, onClose, updateMemes }) => {
   const [memeProperties, setMemeProperties] = useState<MemeType>({
     id: "",
     title: "",
     imageUrl: "",
     likes: 0,
   });
-  console.log(`🚀 ~ EditForm ~ memeProperties:`, memeProperties);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,12 +43,10 @@ const EditForm: FC<IEditFormProps> = ({ id, onClose }) => {
     fetchData();
   }, []);
 
-  const currentKey = [memeProperties.likes];
-  console.log(`🚀 ~ currentKey:`, currentKey);
-
   const handleSubmit = async () => {
     try {
       await updateMeme(memeProperties);
+      await updateMemes();
       onClose();
     } catch (error) {
       console.error("Updating error meme:", error);
@@ -87,8 +86,7 @@ const EditForm: FC<IEditFormProps> = ({ id, onClose }) => {
         placeholder="Select likes"
         size="lg"
         items={LIKES_OPTIONS}
-        defaultSelectedKeys={[memeProperties.likes]}
-        value={memeProperties.likes}
+        selectedKeys={new Set([memeProperties.likes.toString()])}
         onChange={e =>
           setMemeProperties(prev => ({
             ...prev,

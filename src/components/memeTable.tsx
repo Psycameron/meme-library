@@ -21,9 +21,10 @@ const COLUMNS = [
 
 interface IMemeTableProps {
   memes: MemeType[];
+  updateMemes: () => Promise<void>;
 }
 
-const MemeTable: FC<IMemeTableProps> = ({ memes }) => {
+const MemeTable: FC<IMemeTableProps> = ({ memes, updateMemes }) => {
   return (
     <Table aria-label="Table with memes">
       <TableHeader columns={COLUMNS}>
@@ -44,7 +45,9 @@ const MemeTable: FC<IMemeTableProps> = ({ memes }) => {
                 ) : (
                   getKeyValue(item, columnKey)
                 )}
-                {columnKey === "edit" && <EditModal id={item.id} />}
+                {columnKey === "edit" && (
+                  <EditModal id={item.id} updateMemes={updateMemes} />
+                )}
               </TableCell>
             )}
           </TableRow>

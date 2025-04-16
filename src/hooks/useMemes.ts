@@ -7,22 +7,22 @@ export const useMemes = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<null | unknown>(null);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        const data = await getMemes();
-        setMemes(data);
-      } catch (err) {
-        console.error("Error fetching memes:", err);
-        setError(err);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchMemes = async () => {
+    try {
+      setLoading(true);
+      const data = await getMemes();
+      setMemes(data);
+    } catch (err) {
+      console.error("Error fetching memes:", err);
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    fetchData();
+  useEffect(() => {
+    fetchMemes();
   }, []);
 
-  return { memes, loading, error };
+  return { memes, loading, error, fetchMemes };
 };
