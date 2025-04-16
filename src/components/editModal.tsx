@@ -8,6 +8,7 @@ import {
 } from "@heroui/modal";
 import { Button } from "@heroui/button";
 import EditForm from "./editForm";
+import { PencilIcon } from "./icons";
 
 interface IEditModalProps {
   id: string;
@@ -19,15 +20,20 @@ const EditModal: FC<IEditModalProps> = ({ id, updateMemes }) => {
 
   return (
     <>
-      <Button color="primary" onPress={onOpen}>
-        Edit
+      <Button
+        color="primary"
+        onPress={onOpen}
+        className="min-w-6"
+        variant="light"
+      >
+        <PencilIcon size={20} />
       </Button>
 
       <Modal isOpen={isOpen} placement="top-center" onOpenChange={onOpenChange}>
-        <ModalContent>
+        <ModalContent className="p-4">
           {onClose => (
             <>
-              <ModalHeader className="flex flex-col gap-1">
+              <ModalHeader className="flex flex-col gap-1 text-center">
                 Meme properties
               </ModalHeader>
               <ModalBody>
