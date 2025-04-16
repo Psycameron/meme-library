@@ -37,11 +37,14 @@ const MemeTable: FC<IMemeTableProps> = ({ memes, updateMemes }) => {
             {columnKey => (
               <TableCell>
                 {columnKey === "imageUrl" ? (
-                  <img
-                    src={getKeyValue(item, columnKey)}
-                    alt={item.title}
-                    className="w-40 h-auto rounded"
-                  />
+                  <a
+                    href={getKeyValue(item, columnKey)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 underline hover:text-blue-800"
+                  >
+                    Open image
+                  </a>
                 ) : (
                   getKeyValue(item, columnKey)
                 )}
