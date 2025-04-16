@@ -12,7 +12,7 @@ export default function TablePage() {
     <DefaultLayout>
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
         {loading ? (
-          <div>Loading...</div>
+          <div>Loading memes...</div>
         ) : (
           <MemeTable memes={memes} updateMemes={fetchMemes} />
         )}
