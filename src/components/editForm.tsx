@@ -1,4 +1,3 @@
-import { useMemes } from "@/hooks/useMemes";
 import { getMemesById, updateMeme } from "@/service/memesApi";
 import { MemeType } from "@/types/apiTypes";
 import { Button } from "@heroui/button";
@@ -28,15 +27,10 @@ const EditForm: FC<IEditFormProps> = ({ id, onClose, updateMemes }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        //   setLoading(true);
         const data = await getMemesById(id);
         setMemeProperties(data);
-        // setSelectedLikes(data.likes?.toString());
       } catch (err) {
         console.error("Error fetching memes:", err);
-        //   setError(err);
-      } finally {
-        //   setLoading(false);
       }
     };
 
