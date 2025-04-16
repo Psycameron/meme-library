@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import { Link } from "@heroui/link";
 import {
   Navbar as HeroUINavbar,
@@ -8,11 +9,11 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
 } from "@heroui/navbar";
-// import clsx from "clsx";
-
 import { siteConfig } from "@/config/site";
 
 export const Navbar = () => {
+  const location = useLocation();
+
   return (
     <HeroUINavbar maxWidth="xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
@@ -29,10 +30,11 @@ export const Navbar = () => {
           {siteConfig.navItems.map(item => (
             <NavbarItem key={item.href}>
               <Link
-                // className={clsx(
-                //   linkStyles({ color: "foreground" }),
-                //   "data-[active=true]:text-primary data-[active=true]:font-medium"
-                // )}
+                className={`transition-colors duration-200 ${
+                  location.pathname === item.href
+                    ? "text-primary font-semibold"
+                    : "hover:text-primary"
+                }`}
                 color="foreground"
                 href={item.href}
               >
@@ -51,15 +53,7 @@ export const Navbar = () => {
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                // className={clsx(
-                //   linkStyles({ color: "foreground" }),
-                //   "data-[active=true]:text-primary data-[active=true]:font-medium"
-                // )}
-                color="foreground"
-                href={item.href}
-                size="lg"
-              >
+              <Link color="foreground" href={item.href} size="lg">
                 {item.label}
               </Link>
             </NavbarMenuItem>
